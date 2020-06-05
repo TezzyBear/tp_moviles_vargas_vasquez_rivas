@@ -1,7 +1,16 @@
 Menu = function(game){}
 
 Menu.prototype = {
-	create:function(){
+	create:function(){        
+        this.bg = this.game.add.sprite(0,0,"bg");
+        
+        this.title = this.add.text();
+        this.title.anchor.setTo(0.5);
+        this.title.x = this.world.centerX;
+        this.title.y += 50;
+        this.title.fill = "#FFFFFF";
+        this.title.fontSize = 32;
+        this.title.text = "Menu";
 
         this.iconBob = this.game.add.sprite(0,0,"iconBob");
         this.iconBob.anchor.setTo(0.5);

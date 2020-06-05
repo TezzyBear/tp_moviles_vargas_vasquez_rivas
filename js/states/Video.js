@@ -14,26 +14,30 @@ Video.prototype = {
         this.video.play(false,this.playSpeed);  
 
         this.spaceBar = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-        this.spaceBarCoolDown = 0.1; 
+        this.spaceBarCoolDown = 100; 
         this.canPressSpaceBar = true;
         this.spaceBarTimer = 0;      
         
-        this.slowSpeedWindow = 0.3;
+        this.slowSpeedWindow = 300;
         this.slowSpeedTimer = 0;
         
     },
     update:function(){
 
         this.slowSpeedTimer += this.game.time.elapsed;
+        //console.log(this.slowSpeedTimer);
         if(this.slowSpeedTimer >= this.slowSpeedWindow){
 
             this.slowSpeedTimer = 0;
-
+            
             if(this.playSpeed > 0.1){
                 this.playSpeed -= 0.1;
+                this.playSpeed = Number(this.playSpeed.toFixed(1));
             }else{
-                this.playSpeed = 0;
+                this.playSpeed = 0;               
             }
+            console.log(this.playSpeed);
+            this.video.playbackRate = this.playSpeed; 
         }
 
         this.spaceBarTimer += this.game.time.elapsed;        
@@ -63,5 +67,5 @@ Video.prototype = {
             }
             this.video.playbackRate = this.playSpeed;          
         }           
-    }
+    },
 }
